@@ -38,5 +38,5 @@ test.describe('Desktop tests', () => {
         
         await expect(page.locator('#show_messages')).toHaveText('Doładowanie wykonane! 50,00PLN na numer 500 xxx xxx');
     });
-
+//TODO: develop further desktop tests but with various assertions
 });
