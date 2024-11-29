@@ -27,6 +27,9 @@
   `npm i @playwright/test`
 - updating browsers (after updating playwright itself)
   `npx playwright install`
+- running Trace Viewer on zip file when u want to access it
+`npx playwright show-trace trace.zip`
+
 
 ## Playwright Config modifications
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Desktop tests', () => {
-  test('quick payment with correct data', async ({ page }) => {
+  test.only('quick payment with correct data', async ({ page }) => {
     //  Arrange
     const url = 'https://demo-bank.vercel.app/';
     const userID = 'test1234';
@@ -15,7 +15,7 @@ test.describe('Desktop tests', () => {
     //Act
     await page.goto(url);
     await page.getByTestId('login-input').fill(userID);
-    await page.getByTestId('password-input').fill(userPassword);
+    await page.getByTestId('password-input-lol').fill(userPassword);
     await page.getByTestId('login-button').click();
 
     await page.waitForLoadState('domcontentloaded');
