@@ -15,7 +15,7 @@ test.describe('Desktop tests', () => {
     //Act
     await page.goto(url);
     await page.getByTestId('login-input').fill(userID);
-    await page.getByTestId('password-input-lol').fill(userPassword);
+    await page.getByTestId('password-input').fill(userPassword);
     await page.getByTestId('login-button').click();
 
     await page.waitForLoadState('domcontentloaded');
