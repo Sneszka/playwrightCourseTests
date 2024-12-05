@@ -1,25 +1,27 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Desktop tests', () => {
-  test('quick payment with correct data', async ({ page }) => {
-    //Arrange
-    const url = 'https://demo-bank.vercel.app/';
+  
+  test.beforeEach(async ({ page }) => {
     const userID = 'test1234';
     const userPassword = 'test1234';
+    const url = 'https://demo-bank.vercel.app/';
 
+    await page.goto(url);
+    await page.getByTestId('login-input').fill(userID);
+    await page.getByTestId('password-input').fill(userPassword);
+    await page.getByTestId('login-button').click();
+    await page.waitForLoadState('domcontentloaded');
+  });
+
+  test('quick payment with correct data', async ({ page }) => {
+    //Arrange
     const receiverID = '2';
     const transferAmount = '120';
     const transferTitle = 'zwrot srodkow';
     const expectedTransferReceiver = 'Chuck Demobankowy';
 
     //Act
-    await page.goto(url);
-    await page.getByTestId('login-input').fill(userID);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
-
-    await page.waitForLoadState('domcontentloaded');
-
     await page.locator('#widget_1_transfer_receiver').selectOption(receiverID);
     await page.locator('#widget_1_transfer_amount').fill(transferAmount);
     await page.locator('#widget_1_transfer_title').fill(transferTitle);
@@ -37,21 +39,11 @@ test.describe('Desktop tests', () => {
 
   test('successful mobile top-up', async ({ page }) => {
     //Arrange
-    const url = 'https://demo-bank.vercel.app/';
-    const userID = 'test1234';
-    const userPassword = 'test1234';
-
     const selectedNumber = '500 xxx xxx';
     const transferAmount = '50';
 
     //Act
-    await page.goto(url);
-    await page.getByTestId('login-input').fill(userID);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
-
     await page.waitForLoadState('domcontentloaded');
-
     await page.locator('#widget_1_topup_receiver').selectOption(selectedNumber);
     await page.locator('#widget_1_topup_amount').fill(transferAmount);
     await page.locator('#uniform-widget_1_topup_agreement span').click();
