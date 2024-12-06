@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Desktop tests', () => {
-  
   test.beforeEach(async ({ page }) => {
     const userID = 'test1234';
     const userPassword = 'test1234';

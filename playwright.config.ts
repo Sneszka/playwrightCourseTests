@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices, PlaywrightTestConfig } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -11,6 +11,14 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+const config: PlaywrightTestConfig = {
+  testDir: './tests',
+  timeout: 300 * 1000,
+  expect: {
+    timeout: 5000,
+  }
+}
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
