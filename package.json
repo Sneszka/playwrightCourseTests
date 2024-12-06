@@ -2,7 +2,13 @@
   "name": "demobanktests",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test ",
+    "test:headed": "npx playwright test --headed",
+    "test:desktop": "npm run test tests/desktop.spec.ts",
+    "test:desktop:headed": "npm run test tests/desktop.spec.ts -- --headed",
+    "test:login": "npm run test tests/login.spec.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
